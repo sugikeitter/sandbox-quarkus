@@ -1,0 +1,8 @@
+version: 1.0
+runtime: corretto11
+build:
+  commands:
+    build:
+      - ./gradlew build
+run:
+  command: java -jar build/quarkus-app/quarkus-run.jar
