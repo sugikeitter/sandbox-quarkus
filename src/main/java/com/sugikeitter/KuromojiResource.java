@@ -35,7 +35,7 @@ public class KuromojiResource {
                 .append("</head>")
                 .append("<body>")
                 .append("<table>")
-                .append("<thead><tr><th>Surface</th><th>Part-of-Speech</th><th>Base form</th><th>Reading Pronunciation</th></tr></thead>")
+                .append("<thead><tr><th>表層形</th><th>品詞細分類</th><th>基本形</th><th>読み</th></tr></thead>")
                 .append("<tbody>");
         for (Token token : tokens) {
             htmlResult.append("<tr>")
@@ -43,19 +43,19 @@ public class KuromojiResource {
                     .append(token.getSurface())
                     .append("</td>")
                     .append("<td>")
-                    .append(token.getAllFeaturesArray()[0])
+                    .append(token.getPartOfSpeechLevel1())
                     .append(",")
-                    .append(token.getAllFeaturesArray()[1])
+                    .append(token.getPartOfSpeechLevel2())
                     .append(",")
-                    .append(token.getAllFeaturesArray()[2])
+                    .append(token.getPartOfSpeechLevel3())
                     .append(",")
-                    .append(token.getAllFeaturesArray()[3])
+                    .append(token.getPartOfSpeechLevel4())
                     .append("</td>")
                     .append("<td>")
-                    .append(token.getAllFeaturesArray()[6])
+                    .append(token.getBaseForm())
                     .append("</td>")
                     .append("<td>")
-                    .append(token.getAllFeaturesArray()[7])
+                    .append(token.getReading())
                     .append("</td>")
                     .append("</tr>");
         }
@@ -76,7 +76,7 @@ public class KuromojiResource {
         for (Token token : tokens) {
             System.out.println(token.getSurface() + "\t" + token.getAllFeatures());
         }
-        return "<p>Usage: /tokenizeKuromoji/{TEXT_YOU_WANT_TO_TOKENIZE}}</p>";
+        return "<p style=\"font-family: Open Sans, sans-serif\";\n>Usage: /tokenizeKuromoji/{TEXT_YOU_WANT_TO_TOKENIZE}}</p>";
     }
 
     private static final String css = "body {\n" +
