@@ -44,8 +44,11 @@ public class KuromojiResource {
                     .append("</td>")
                     .append("<td>")
                     .append(token.getAllFeaturesArray()[0])
+                    .append(",")
                     .append(token.getAllFeaturesArray()[1])
+                    .append(",")
                     .append(token.getAllFeaturesArray()[2])
+                    .append(",")
                     .append(token.getAllFeaturesArray()[3])
                     .append("</td>")
                     .append("<td>")
@@ -56,10 +59,10 @@ public class KuromojiResource {
                     .append("</td>")
                     .append("</tr>");
         }
-        htmlResult.append("</tbody>");
-        htmlResult.append("</table>");
-        htmlResult.append("</body>");
-        htmlResult.append("</html>");
+        htmlResult.append("</tbody>")
+                .append("</table>")
+                .append("</body>")
+                .append("</html>");
 //        System.out.println(htmlResult);
         return htmlResult.toString();
     }
@@ -73,7 +76,7 @@ public class KuromojiResource {
         for (Token token : tokens) {
             System.out.println(token.getSurface() + "\t" + token.getAllFeatures());
         }
-        return "<p>Success tokenize!</p>";
+        return "<p>Usage: /tokenizeKuromoji/{TEXT_YOU_WANT_TO_TOKENIZE}}</p>";
     }
 
     private static final String css = "body {\n" +
