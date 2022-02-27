@@ -60,3 +60,13 @@ If you want to learn more about building native executables, please consult http
 Easily start your RESTful Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
+
+## Build Image
+[Quarkus - Container Images](https://quarkus.io/guides/container-image)
+```bash
+# build at EC2
+./gradlew addExtension --extensions="container-image-jib"
+./gradlew build -Dquarkus.container-image.build=true
+docker tag ec2-user/sandbox-quarkus:1.0-SNAPSHOT ${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/sandbox-quarkus:latest
+docker push ${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/sandbox-quarkus:latest
+```
