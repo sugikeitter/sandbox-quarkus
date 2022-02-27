@@ -2,6 +2,8 @@ version: 1.0
 runtime: corretto11
 build:
   commands:
+    pre-build:
+      - ./gradlew build
     build:
       - ./gradlew build
 run:
