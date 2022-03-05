@@ -37,7 +37,6 @@ permissions:
 
 env:
   AWS_REGION: ap-northeast-1                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
 
 jobs:
   deploy:
@@ -75,10 +74,10 @@ jobs:
         # push it to ECR so that it can
         # be deployed to ECS.
         ./gradlew addExtension --extensions="container-image-jib"
-        ./gradlew build -Dquarkus.container-image.build=true -D-Dquarkus.container-image.group=$ECR_REGISTRY/$ECR_REPOSITORY -Dquarkus.container-image.tag=latest
-        docker tag $ECR_REGISTRY/$ECR_REPOSITORY:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$latest
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        ./gradlew build -Dquarkus.container-image.build=true -D-Dquarkus.container-image.group=$ECR_REGISTRY/${{ secrets.ECR_REPOSITORY }} -Dquarkus.container-image.tag=latest
+        docker tag $ECR_REGISTRY/$ECR_REPOSITORY:latest $ECR_REGISTRY/${{ secrets.ECR_REPOSITORY }}:$IMAGE_TAG
+        docker push $ECR_REGISTRY/${{ secrets.ECR_REPOSITORY }}:$IMAGE_TAG
+        docker push $ECR_REGISTRY/${{ secrets.ECR_REPOSITORY }}:$latest
+        echo "::set-output name=image::$ECR_REGISTRY/${{ secrets.ECR_REPOSITORY }}:$IMAGE_TAG"
 
 
