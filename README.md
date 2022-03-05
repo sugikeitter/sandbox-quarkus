@@ -66,7 +66,7 @@ Easily start your RESTful Web Services
 ```bash
 # build at EC2
 ./gradlew addExtension --extensions="container-image-jib"
-./gradlew build -Dquarkus.container-image.build=true
+./gradlew build -Dquarkus.container-image.build=true -Dquarkus.container-image.group=$ECR_REGISTRY -Dquarkus.container-image.tag=latest
 docker tag ec2-user/sandbox-quarkus:1.0-SNAPSHOT ${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/sandbox-quarkus:latest
 docker push ${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/sandbox-quarkus:latest
 ```
